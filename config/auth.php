@@ -40,7 +40,14 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'api' => [
+            'driver' => 'jwt',
+            'provider' => 'admin_api',
+            'hash' => false,
+        ],
     ],
+
+
 
     /*
     |--------------------------------------------------------------------------
@@ -69,6 +76,10 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+        'api' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\User::class,
+        ],
     ],
 
     /*
@@ -97,6 +108,13 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
+
+        'api' => [
+            'provider' => 'admin_api',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
     ],
 
     /*
@@ -111,5 +129,7 @@ return [
     */
 
     'password_timeout' => 10800,
+
+
 
 ];
