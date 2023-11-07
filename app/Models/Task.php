@@ -10,7 +10,7 @@ class Task extends Model
     use HasFactory;
 
     use HasFactory;
-    protected $table = 'notes';
+    protected $table = 'tasks';
     protected $fillable = [
         'title',
         'description',
