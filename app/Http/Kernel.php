@@ -2,8 +2,8 @@
 
 namespace App\Http;
 
-use App\Http\Middleware\EmployeeMiddleware;
-use App\Http\Middleware\TeamLeaderMiddleware;
+// use App\Http\Middleware\EmployeeMiddleware;
+// use App\Http\Middleware\TeamLeaderMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -24,11 +24,11 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
     ];
-    // protected $routeMiddleware = [
-    //     'admin' => \App\Http\Middleware\AdminMiddleware::class,
-    //     'team_leader' => \App\Http\Middleware.TeamLeaderMiddleware::class,
-    //     'employee' => \App\Http\Middleware.EmployeeMiddleware::class,
-    // ];
+    protected $routeMiddleware = [
+        'admin' => \App\Http\Middleware\AdminMiddleware::class,
+        'team_leader' => \App\Http\Middleware\TeamLeaderMiddleware::class,
+        'employee' => \App\Http\Middleware\EmployeeMiddleware::class,
+    ];
 
     /**
      * The application's route middleware groups.
@@ -43,10 +43,6 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-            \App\Http\Middleware\AdminMiddleware::class,
-            \App\Http\Middleware\TeamLeaderMiddleware::class,
-            \App\Http\Middleware\EmployeeMiddleware::class,
-
         ],
 
         'api' => [

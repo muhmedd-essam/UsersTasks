@@ -26,8 +26,6 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 Route::middleware(['auth', 'team_leader'])->group(function () {
 });
-require __DIR__.'/auth.php';
-
 Route::middleware(['auth', 'employee'])->group(function () {
 });
 require __DIR__.'/auth.php';
