@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\TasksController;
 use App\Http\Controllers\UsersController;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,13 +21,26 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware(['auth', 'admin'])->group(function () {
-    Route::post('/notes', [UsersController::class, 'store'])->name('users.store');
+Route::post('/login', [UsersController::class, 'login']);
 
+Route::middleware(['auth:api', 'admin'])->group(function () {
+    Route::post('/register', [UsersController::class, 'register']);
+    Route::post('/store', [TasksController::class, 'store']);
+    Route::get('/index', [TasksController::class, 'index']);
+    Route::post('/update/{task}', [TasksController::class, 'update']);
+    Route::delete('/destroy/{task}', [TasksController::class, 'destroy']);
 });
 
-Route::middleware(['auth', 'team_leader'])->group(function () {
+Route::middleware(['auth:api', 'team_leader'])->group(function () {
+    Route::post('/register', [UsersController::class, 'register']);
+    Route::post('/store', [TasksController::class, 'store']);
+    Route::get('/index', [TasksController::class, 'index']);
+    Route::post('/update/{task}', [TasksController::class, 'update']);
+    Route::delete('/destroy/{task}', [TasksController::class, 'destroy']);
 });
-Route::middleware(['auth', 'employee'])->group(function () {
+
+Route::middleware(['auth:api', 'employee'])->group(function () {
+    Route::get('/index', [TasksController::class, 'index']);
+    Route::post('/update/{task}', [TasksController::class, 'update']);
 });
-require __DIR__.'/auth.php';
+// require __DIR__.'/auth.php';

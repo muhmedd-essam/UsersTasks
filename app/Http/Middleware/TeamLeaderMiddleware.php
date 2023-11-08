@@ -21,6 +21,6 @@ class TeamLeaderMiddleware
             return $next($request);
         }
 
-        return redirect('/unauthorized');
+        return response()->json(['message' => 'not available for you']);
     }
 }

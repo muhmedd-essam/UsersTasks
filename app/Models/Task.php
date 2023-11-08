@@ -10,6 +10,8 @@ class Task extends Model
     use HasFactory;
 
     use HasFactory;
+
+    protected $dates = ['deadline'];
     protected $table = 'tasks';
     protected $fillable = [
         'title',

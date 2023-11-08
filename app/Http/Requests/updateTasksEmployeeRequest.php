@@ -4,14 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class userStoreRequest extends FormRequest
+class updateTasksEmployeeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -22,10 +22,7 @@ class userStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            // 'name' => 'required',
-            'email' => 'required|email|',
-            'password' => 'required|min:6',
-            // 'role' => 'required|in:team_leader,admin,employee',
+            //
         ];
     }
 }
