@@ -23,7 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/login', [UsersController::class, 'login']);
 
-Route::middleware(['auth:api', 'admin'])->group(function () {
+Route::middleware(['auth:api'])->group(function () {
     Route::post('/register', [UsersController::class, 'register']);
     Route::post('/store', [TasksController::class, 'store']);
     Route::get('/index', [TasksController::class, 'index']);
@@ -31,16 +31,16 @@ Route::middleware(['auth:api', 'admin'])->group(function () {
     Route::delete('/destroy/{task}', [TasksController::class, 'destroy']);
 });
 
-Route::middleware(['auth:api', 'team_leader'])->group(function () {
-    Route::post('/register', [UsersController::class, 'register']);
-    Route::post('/store', [TasksController::class, 'store']);
-    Route::get('/index', [TasksController::class, 'index']);
-    Route::post('/update/{task}', [TasksController::class, 'update']);
-    Route::delete('/destroy/{task}', [TasksController::class, 'destroy']);
-});
+// Route::middleware(['auth:api', 'team_leader'])->group(function () {
+//     Route::post('/register', [UsersController::class, 'register']);
+//     Route::post('/store', [TasksController::class, 'store']);
+//     Route::get('/indexx', [TasksController::class, 'index']);
+//     Route::post('/update/{task}', [TasksController::class, 'update']);
+//     Route::delete('/destroy/{task}', [TasksController::class, 'destroy']);
+// });
 
-Route::middleware(['auth:api', 'employee'])->group(function () {
-    Route::get('/index', [TasksController::class, 'index']);
-    Route::post('/update/{task}', [TasksController::class, 'update']);
-});
+// Route::middleware(['auth:api', 'employee'])->group(function () {
+//     // Route::get('/index', [TasksController::class, 'index']);
+//     Route::post('/update/{task}', [TasksController::class, 'update']);
+// });
 // require __DIR__.'/auth.php';

@@ -20,7 +20,7 @@ class AdminMiddleware
         if (auth()->check() && auth()->user()->role == 'admin') {
             return $next($request);
         }
-        
+
         return response()->json(['message' => 'not available for youuu']);
     }
 }

@@ -23,7 +23,7 @@ class TasksController extends Controller
             foreach ($users as $user) {
                 if ($user->leader_id === auth()->user()->id ) {
                     $user = Task::with('user')->where('user_id', $user->id)->get();
-                    $tasks[]=$user;
+                    $tasks=$user;
                 }
             }
             return response()->json(['your tasks'=> $leaderTask,'tasks of your team' => $tasks]);
@@ -31,7 +31,8 @@ class TasksController extends Controller
             $task=Task::where('user_id', auth()->user()->id)->get();
             return response()->json(['your tasks'=> $task]);
         }
-    }
+
+        }
     public function store(storeTasksRequest $request){
         if (auth()->check() && auth()->user()->role == 'admin') {
             $task = new Task();
